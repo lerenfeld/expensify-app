@@ -8,8 +8,9 @@ module.exports = (env, args) => {
   return {
     entry: './src/app.js',
     output: {
-      path: path.join(__dirname, 'public'),
-      filename: 'bundle.js'
+      path: path.join(__dirname, 'public', 'dist'),
+      filename: 'bundle.js',
+      publicPath: "/dist/" // this row for -  webpack-dev-server
     },
     module: {
       rules: [{
@@ -20,20 +21,20 @@ module.exports = (env, args) => {
       },
       {
         test: /\.s?css$/,
-        use: [ MiniCssExtractPlugin.loader, 
-          {
-              loader: 'css-loader',
-              options: {
-                  sourceMap: true
-              }
-          },
-          {
-              loader: 'sass-loader',
-              options: {
-                  sourceMap: true
-              }
+        use: [MiniCssExtractPlugin.loader,
+        {
+          loader: 'css-loader',
+          options: {
+            sourceMap: true
           }
-      ],
+        },
+        {
+          loader: 'sass-loader',
+          options: {
+            sourceMap: true
+          }
+        }
+        ],
       }
       ]
     },
@@ -45,13 +46,17 @@ module.exports = (env, args) => {
     devtool: isProduction ? 'source-map' : 'inline-cheap-module-source-map',
     devServer: {
       static: {
-        directory: path.join(__dirname, 'public')
+        directory: path.join(__dirname, 'public'),
+
       },
 
       historyApiFallback: true,
-      compress: true,
+      compress: true
     },
-    mode: 'development'
+    mode: 'development',
+
+ 
+
   };
 };
 
