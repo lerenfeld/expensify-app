@@ -1,10 +1,14 @@
 import React from 'react';
-import ExpenseList from './ExpenseList'
+import ExpenseList from './ExpenseList';
+import ExpensesSummary from './ExpensesSummary';
+
+
 
 const ExpenseDashBoardPage = () => (
-    <div>
-       <ExpenseList />
-    </div>
+  <div>
+    <ExpensesSummary/>
+    <ExpenseList />
+  </div>
 )
 
 export default ExpenseDashBoardPage;
