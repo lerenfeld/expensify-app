@@ -1,6 +1,13 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+if(process.env.NODE_ENV === 'test'){
+
+}else if(process.env.NODE_ENV === 'development'){
+  
+}
+
 module.exports = (env, args) => {
 
   const isProduction = args.mood === 'production'
@@ -36,7 +43,7 @@ module.exports = (env, args) => {
         }
         ],
       }
-      ]
+      ] 
     },
     plugins: [
       new MiniCssExtractPlugin({
